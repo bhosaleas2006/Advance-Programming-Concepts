@@ -1,27 +1,36 @@
-#1.	String Length
-str =input("Enter the string")
-length =len(str)
-print(length)
+# 1. String Length
+
+s = input("Enter a string: ")
+count = 0
+
+for ch in s:
+    count = count + 1
+
+print("Length of string:", count)
 
 
 # 2. Character Count
 
 s = input("Enter a string: ")
 
-vowels = consonants = digits = spaces = special = 0
+vowels = 0
+consonants = 0
+digits = 0
+spaces = 0
+special = 0
 
 for ch in s:
     if ch.isalpha():
         if ch.lower() in "aeiou":
-            vowels += 1
+            vowels = vowels + 1
         else:
-            consonants += 1
+            consonants = consonants + 1
     elif ch.isdigit():
-        digits += 1
+        digits = digits + 1
     elif ch == " ":
-        spaces += 1
+        spaces = spaces + 1
     else:
-        special += 1
+        special = special + 1
 
 print("Vowels:", vowels)
 print("Consonants:", consonants)
@@ -29,20 +38,25 @@ print("Digits:", digits)
 print("Spaces:", spaces)
 print("Special Characters:", special)
 
+
 # 3. Reverse a String
 
 s = input("Enter a string: ")
 
 rev = ""
+
 for ch in s:
     rev = ch + rev
 
 print("Reversed String:", rev)
 
+
 # 4. Palindrome Check
 
 s = input("Enter a string: ")
+
 rev = ""
+
 for ch in s:
     rev = ch + rev
 
@@ -51,19 +65,23 @@ if s == rev:
 else:
     print("Not Palindrome")
 
+
 # 5. Uppercase and Lowercase Count
 
 s = input("Enter a string: ")
-upper = lower = 0
+
+upper = 0
+lower = 0
 
 for ch in s:
     if ch.isupper():
-        upper += 1
+        upper = upper + 1
     elif ch.islower():
-        lower += 1
+        lower = lower + 1
 
-print("Uppercase:", upper)
-print("Lowercase:", lower)
+print("Uppercase Letters:", upper)
+print("Lowercase Letters:", lower)
+
 
 # 6. Replace Characters
 
@@ -75,11 +93,12 @@ result = ""
 
 for ch in s:
     if ch == old:
-        result += new
+        result = result + new
     else:
-        result += ch
+        result = result + ch
 
 print("Modified String:", result)
+
 
 # 7. Remove Spaces
 
@@ -89,9 +108,10 @@ result = ""
 
 for ch in s:
     if ch != " ":
-        result += ch
+        result = result + ch
 
 print("String without spaces:", result)
+
 
 # 8. Frequency of a Character
 
@@ -102,9 +122,10 @@ count = 0
 
 for c in s:
     if c == ch:
-        count += 1
+        count = count + 1
 
 print("Frequency:", count)
+
 
 # 9. First and Last Character
 
@@ -113,6 +134,7 @@ s = input("Enter a string: ")
 print("First Character:", s[0])
 print("Last Character:", s[-1])
 
+
 # 10. ASCII Values
 
 s = input("Enter a string: ")
@@ -120,154 +142,339 @@ s = input("Enter a string: ")
 for ch in s:
     print(ch, "=", ord(ch))
 
-from collections import Counter
-import re
+Based on the uploaded experiment, here are **Questions 11–20** using simple Python syntax. 
 
-
+```python
 # 11. Word Count
-sentence = input("Enter a sentence: ")
-words = sentence.split()
-print("11. Word Count:", len(words))
+
+s = input("Enter a sentence: ")
+
+count = 1
+
+for ch in s:
+    if ch == " ":
+        count = count + 1
+
+print("Total Words:", count)
+
 
 # 12. Longest Word
-print("12. Longest Word:", max(words, key=len))
+
+s = input("Enter a sentence: ")
+
+words = s.split()
+
+longest = words[0]
+
+for word in words:
+    if len(word) > len(longest):
+        longest = word
+
+print("Longest Word:", longest)
+
 
 # 13. Shortest Word
-print("13. Shortest Word:", min(words, key=len))
+
+s = input("Enter a sentence: ")
+
+words = s.split()
+
+shortest = words[0]
+
+for word in words:
+    if len(word) < len(shortest):
+        shortest = word
+
+print("Shortest Word:", shortest)
+
 
 # 14. Title Case
-print("14. Title Case:", sentence.title())
+
+s = input("Enter a sentence: ")
+
+print("Title Case:", s.title())
+
 
 # 15. Duplicate Characters
-text = input("\nEnter a string for duplicate characters: ")
-freq = Counter(text)
-duplicates = [ch for ch, count in freq.items() if count > 1]
-print("15. Duplicate Characters:", duplicates if duplicates else "No duplicates")
+
+s = input("Enter a string: ")
+
+print("Duplicate Characters:")
+
+for i in range(len(s)):
+    count = 1
+    for j in range(i + 1, len(s)):
+        if s[i] == s[j]:
+            count = count + 1
+    found = False
+    for k in range(i):
+        if s[i] == s[k]:
+            found = True
+    if count > 1 and found == False:
+        print(s[i])
+
 
 # 16. Character Frequency
-print("16. Character Frequency:")
-for ch, count in freq.items():
-    print(f"{repr(ch)} : {count}")
+
+s = input("Enter a string: ")
+
+print("Character Frequency:")
+
+for i in range(len(s)):
+    count = 0
+    for j in range(len(s)):
+        if s[i] == s[j]:
+            count = count + 1
+
+    found = False
+    for k in range(i):
+        if s[i] == s[k]:
+            found = True
+
+    if found == False:
+        print(s[i], "=", count)
+
 
 # 17. Anagram Check
-s1 = input("\nEnter first string: ").replace(" ", "").lower()
-s2 = input("Enter second string: ").replace(" ", "").lower()
-print("17. Anagram:", "Yes" if sorted(s1) == sorted(s2) else "No")
+
+s1 = input("Enter first string: ")
+s2 = input("Enter second string: ")
+
+a = sorted(s1.lower())
+b = sorted(s2.lower())
+
+if a == b:
+    print("Anagram")
+else:
+    print("Not Anagram")
+
 
 # 18. Remove Duplicate Characters
-text = input("\nEnter a string: ")
-seen = set()
+
+s = input("Enter a string: ")
+
 result = ""
-for ch in text:
-    if ch not in seen:
-        seen.add(ch)
-        result += ch
-print("18. After Removing Duplicates:", result)
+
+for ch in s:
+    if ch not in result:
+        result = result + ch
+
+print("After Removing Duplicates:", result)
+
 
 # 19. Substring Search
-main = input("\nEnter main string: ")
+
+main = input("Enter main string: ")
 sub = input("Enter substring: ")
-print("19. Substring Exists:", "Yes" if sub in main else "No")
+
+if sub in main:
+    print("Substring Found")
+else:
+    print("Substring Not Found")
+
 
 # 20. Count Occurrences of a Word
-sentence = input("\nEnter a sentence: ")
-word = input("Enter word to count: ")
-count = sentence.lower().split().count(word.lower())
-print("20. Occurrences:", count)
+
+sentence = input("Enter a sentence: ")
+word = input("Enter word to search: ")
+
+words = sentence.split()
+
+count = 0
+
+for w in words:
+    if w == word:
+        count = count + 1
+
+print("Occurrences:", count)
 
 # 21. Password Validator
-password = input("\nEnter password: ")
-valid = (
-    len(password) >= 8 and
-    re.search(r"[A-Z]", password) and
-    re.search(r"[a-z]", password) and
-    re.search(r"\d", password) and
-    re.search(r"[!@#$%^&*(),.?\":{}|<>]", password)
-)
-print("21. Password Valid:", "Yes" if valid else "No")
+
+password = input("Enter password: ")
+
+upper = 0
+lower = 0
+digit = 0
+special = 0
+
+for ch in password:
+    if ch.isupper():
+        upper = upper + 1
+    elif ch.islower():
+        lower = lower + 1
+    elif ch.isdigit():
+        digit = digit + 1
+    else:
+        special = special + 1
+
+if len(password) >= 8 and upper >= 1 and lower >= 1 and digit >= 1 and special >= 1:
+    print("Valid Password")
+else:
+    print("Invalid Password")
+
 
 # 22. Run-Length Encoding
-text = input("\nEnter string for Run-Length Encoding: ")
-encoded = ""
+
+s = input("Enter a string: ")
+
 i = 0
-while i < len(text):
+result = ""
+
+while i < len(s):
     count = 1
-    while i + 1 < len(text) and text[i] == text[i + 1]:
-        count += 1
-        i += 1
-    encoded += text[i] + str(count)
-    i += 1
-print("22. Run-Length Encoding:", encoded)
+    while i + 1 < len(s) and s[i] == s[i + 1]:
+        count = count + 1
+        i = i + 1
+    result = result + s[i] + str(count)
+    i = i + 1
+
+print("Encoded String:", result)
+
 
 # 23. String Compression
-text = input("\nEnter string for compression: ")
-compressed = ""
+
+s = input("Enter a string: ")
+
 i = 0
-while i < len(text):
+result = ""
+
+while i < len(s):
     count = 1
-    while i + 1 < len(text) and text[i] == text[i + 1]:
-        count += 1
-        i += 1
-    compressed += text[i] + str(count)
-    i += 1
-print("23. String Compression:", compressed if len(compressed) < len(text) else text)
+    while i + 1 < len(s) and s[i] == s[i + 1]:
+        count = count + 1
+        i = i + 1
+    result = result + s[i] + str(count)
+    i = i + 1
+
+if len(result) < len(s):
+    print("Compressed String:", result)
+else:
+    print("Original String:", s)
+
 
 # 24. Most Frequent Character
-text = input("\nEnter string: ")
-freq = Counter(text)
-most = freq.most_common(1)[0]
-print("24. Most Frequent Character:", most[0], "Frequency:", most[1])
+
+s = input("Enter a string: ")
+
+maxcount = 0
+maxchar = ""
+
+for i in range(len(s)):
+    count = 0
+    for j in range(len(s)):
+        if s[i] == s[j]:
+            count = count + 1
+    if count > maxcount:
+        maxcount = count
+        maxchar = s[i]
+
+print("Most Frequent Character:", maxchar)
+print("Frequency:", maxcount)
+
 
 # 25. Second Most Frequent Character
-if len(freq) >= 2:
-    second = freq.most_common(2)[1]
-    print("25. Second Most Frequent Character:", second[0], "Frequency:", second[1])
+
+s = input("Enter a string: ")
+
+first = 0
+second = 0
+firstchar = ""
+secondchar = ""
+
+for i in range(len(s)):
+    count = 0
+    for j in range(len(s)):
+        if s[i] == s[j]:
+            count = count + 1
+
+    found = False
+    for k in range(i):
+        if s[i] == s[k]:
+            found = True
+
+    if found == False:
+        if count > first:
+            second = first
+            secondchar = firstchar
+            first = count
+            firstchar = s[i]
+        elif count > second:
+            second = count
+            secondchar = s[i]
+
+if secondchar != "":
+    print("Second Most Frequent Character:", secondchar)
 else:
-    print("25. Second Most Frequent Character: Not available")
+    print("Not Available")
+
 
 # 26. Caesar Cipher
-message = input("\nEnter message: ")
+
+text = input("Enter message: ")
 shift = int(input("Enter shift value: "))
 
 encrypted = ""
-for ch in message:
-    if ch.isalpha():
-        base = ord('A') if ch.isupper() else ord('a')
-        encrypted += chr((ord(ch) - base + shift) % 26 + base)
-    else:
-        encrypted += ch
 
-decrypted = ""
-for ch in encrypted:
+for ch in text:
     if ch.isalpha():
-        base = ord('A') if ch.isupper() else ord('a')
-        decrypted += chr((ord(ch) - base - shift) % 26 + base)
+        if ch.isupper():
+            encrypted = encrypted + chr((ord(ch) - 65 + shift) % 26 + 65)
+        else:
+            encrypted = encrypted + chr((ord(ch) - 97 + shift) % 26 + 97)
     else:
-        decrypted += ch
+        encrypted = encrypted + ch
 
-print("26. Encrypted:", encrypted)
-print("26. Decrypted:", decrypted)
+print("Encrypted Message:", encrypted)
+
 
 # 27. Email Validator
-email = input("\nEnter email: ")
-pattern = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
-print("27. Valid Email:", "Yes" if re.match(pattern, email) else "No")
+
+email = input("Enter email: ")
+
+if "@" in email and "." in email:
+    print("Valid Email")
+else:
+    print("Invalid Email")
+
 
 # 28. Word Frequency Dictionary
-paragraph = input("\nEnter paragraph: ")
-word_freq = Counter(paragraph.lower().split())
-print("28. Word Frequency:")
-for word, count in word_freq.items():
-    print(word, ":", count)
+
+s = input("Enter a sentence: ")
+
+words = s.split()
+
+for i in range(len(words)):
+    count = 0
+
+    for j in range(len(words)):
+        if words[i] == words[j]:
+            count = count + 1
+
+    found = False
+    for k in range(i):
+        if words[i] == words[k]:
+            found = True
+
+    if found == False:
+        print(words[i], "=", count)
+
 
 # 29. Sentence Reversal
-sentence = input("\nEnter sentence: ")
-print("29. Reversed Sentence:", " ".join(sentence.split()[::-1]))
+
+s = input("Enter a sentence: ")
+
+words = s.split()
+
+for i in range(len(words) - 1, -1, -1):
+    print(words[i], end=" ")
+
 
 # 30. String Rotation
-str1 = input("\nEnter first string: ")
-str2 = input("Enter second string: ")
-if len(str1) == len(str2) and str2 in (str1 + str1):
-    print("30. String Rotation: Yes")
+
+s1 = input("Enter first string: ")
+s2 = input("Enter second string: ")
+
+if len(s1) == len(s2) and s2 in (s1 + s1):
+    print("Yes, String is Rotation")
 else:
-    print("30. String Rotation: No")
+    print("No, String is not Rotation")
