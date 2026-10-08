@@ -142,9 +142,7 @@ s = input("Enter a string: ")
 for ch in s:
     print(ch, "=", ord(ch))
 
-Based on the uploaded experiment, here are **Questions 11–20** using simple Python syntax. 
 
-```python
 # 11. Word Count
 
 s = input("Enter a sentence: ")
