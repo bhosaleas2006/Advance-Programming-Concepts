@@ -1,6 +1,6 @@
-
-# 1.  Write a Python program using regular expressions to extract all digits from a given string.
 import re
+# 1.  Write a Python program using regular expressions to extract all digits from a given string.
+
 
 text = "My roll number is 126 and marks are 85"
 print(re.findall(r'\d', text))
